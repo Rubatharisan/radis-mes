@@ -1,6 +1,11 @@
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
+
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,10 +18,13 @@ import DataAccessObject.OrderDAO;
 import DataAccessObject.ProductDAO;
 import DataAccessObject.UserDAO;
 import Sandbox.CRUD;
+import Sandbox.Listener;
+import Sandbox.LxmlReceiver;
+import XML.XMLOrderImporter;
 
 public class Main {
 	
-	public static void main(String[] args){
+	public static void main(final String[] args){
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 
 //		User user = new User();
@@ -73,12 +81,12 @@ public class Main {
 //		User xo = new User();
 //		xo.setEmail("Rubas");
 //		
-		OrderDAO orderDao = new OrderDAO();
-		Order one = new Order();
-		one.setProduct(7);
-		orderDao.addOrder(one);
-		
-		ProductDAO productDAO = new ProductDAO();
+//		OrderDAO orderDao = new OrderDAO();
+//		Order one = new Order();
+//		one.setProduct(7);
+//		orderDao.addOrder(one);
+//		
+//		ProductDAO productDAO = new ProductDAO();
 //		System.out.println();
 //		
 //		for (Product iter : productDAO.getAllProducts()) {
@@ -87,8 +95,8 @@ public class Main {
 //		}
 //		
 
-		Order tmpOrder = new Order();
-		OrderDAO dao1 = new OrderDAO();
+//		Order tmpOrder = new Order();
+//		OrderDAO dao1 = new OrderDAO();
 //		tmpOrder.setProduct(6);
 //		tmpOrder.setQuantity(5);
 //		dao1.addOrder(tmpOrder);
@@ -106,7 +114,7 @@ public class Main {
 //		tmpOrder.setProduct(ohMy.getName());
 //		dao1.addOrder(tmpOrder);
 //		
-		ProductDAO dao = new ProductDAO();
+//		ProductDAO dao = new ProductDAO();
 //		Product Radis = dao.getProductById(8);
 //		System.out.println(Radis.getEta());
 		
@@ -124,9 +132,19 @@ public class Main {
 //			System.out.println("Order ID: " + order.getId() + " Product: " + dao.getProductById(order.getProduct()).getName() + "(" + dao.getProductById(order.getProduct()).getId() + ")");
 //		}
 //		
-//		Product getMyProduct = dao.getProductById(6);
+//		Product getMyProduct = dao.getProductById(8);
+//		System.out.println(getMyProduct.getName());
 //		getMyProduct.setId(15);
 //		dao.updateProduct(getMyProduct);
 //		
+		
+//		Product hi = new Product("BjønsNosser", 1, 3);
+//		ProductDAO dao = new ProductDAO();
+//		dao.addProduct(hi);
+//		
+		File fXmlFile = new File("src/12OQ1.xml");
+
+		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+		
 	}
 }

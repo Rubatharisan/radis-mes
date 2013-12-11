@@ -14,6 +14,18 @@ public class Product {
 	private int eta;
 	private int available;
 	
+	public Product(){
+		this.id = 0;
+		this.name = null;
+		this.eta = 0;
+		this.available = 0;
+	}
+	
+	public Product(String name, int eta, int available){
+		this.name = name;
+		this.eta = eta;
+		this.available = available;
+	}
 	
 	public int getId() {
 		return id;
