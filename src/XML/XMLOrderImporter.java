@@ -13,7 +13,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import domain.Product;
+
 public class XMLOrderImporter {
+	private int productId;
+	private String orderDate;
+	private Product productID;
+	private String orderStatus;
+	private int orderQuantity;
+	
+	
 	public XMLOrderImporter(File XMLFile){
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
@@ -23,15 +32,7 @@ public class XMLOrderImporter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			Document doc = dBuilder.parse(XMLFile);
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		Document doc = null;
 		try {
 			doc = dBuilder.parse(XMLFile);
@@ -44,7 +45,6 @@ public class XMLOrderImporter {
 		}
 
 		doc.getDocumentElement().normalize();
-		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 		NodeList nList = doc.getElementsByTagName("b2mml:MaterialInformation");
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 
@@ -55,6 +55,7 @@ public class XMLOrderImporter {
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	 
 				Element eElement = (Element) nNode;
+				
 				System.out.println("->ID : " + eElement.getElementsByTagName("b2mml:ID").item(0).getTextContent());
 				System.out.println("->Description : " + eElement.getElementsByTagName("b2mml:Description").item(0).getTextContent());
 				System.out.println("->PublishedDate : " + eElement.getElementsByTagName("b2mml:PublishedDate").item(0).getTextContent());
@@ -63,6 +64,11 @@ public class XMLOrderImporter {
 				System.out.println("->Material:Quantity : " + eElement.getElementsByTagName("b2mml:MaterialLot").item(0).getChildNodes().item(2).getChildNodes().item(0).getTextContent());
 				System.out.println("->ID : " + eElement.getElementsByTagName("b2mml:ID").item(0).getTextContent());
 
+				// get Product ID and set
+				String elementProductInfo = eElement.getElementsByTagName("b2mml:ID").item(0).getTextContent();
+				String[] elementProductInfos = elementProductInfo.split("O");
+				productId = Integer.valueOf(elementProductInfos[0]);
+				
 
 	 
 			}

@@ -143,8 +143,21 @@ public class Main {
 //		dao.addProduct(hi);
 //		
 		File fXmlFile = new File("src/12OQ1.xml");
-
 		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+		
+		LxmlReceiver disTwo = new LxmlReceiver();
+		try {
+			disTwo.ReceiveXML("Random.xml");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }
