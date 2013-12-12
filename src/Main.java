@@ -142,7 +142,7 @@ public class Main {
 //		ProductDAO dao = new ProductDAO();
 //		dao.addProduct(hi);
 //		
-		File fXmlFile = new File("src/12OQ1.xml");
+		File fXmlFile = new File("src/9OQ7.xml");
 		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
 		
 		LxmlReceiver disTwo = new LxmlReceiver();
