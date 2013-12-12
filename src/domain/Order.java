@@ -14,7 +14,7 @@ public class Order {
 	private int id;
 	private int product;
 	private int quantity;
-	private Date startDate;
+	private String startDate;
 	private Date finishDate;
 	
 	public Order(){
@@ -24,7 +24,7 @@ public class Order {
 		finishDate = null;
 	}
 	
-	public Order(int product, int quantity, Date startDate, Date finishDate){
+	public Order(int product, int quantity, String startDate, Date finishDate){
 		this.product = product;
 		this.quantity = quantity;
 		this.startDate = startDate;
@@ -41,8 +41,8 @@ public class Order {
 	public int getProduct() {
 		return product;
 	}
-	public void setProduct(int product) {
-		this.product = product;
+	public void setProduct(int product2) {
+		this.product = product2;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -50,11 +50,11 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(String orderDate) {
+		this.startDate = orderDate;
 	}
 	public Date getFinishDate() {
 		return finishDate;

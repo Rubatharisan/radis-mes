@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,20 +18,26 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import DataAccessObject.OrderDAO;
 import DataAccessObject.ProductDAO;
 import Model.MesController;
+import domain.Order;
 import domain.Product;
 
 public class XMLOrderImporter {
 	private String orderDate;
 	private Product product;
-	private String orderStatus;
+	private int productID;
+	private String queueStatus;
 	private int orderQuantity;
 	private int quantityWaste = 10;
 	
 	public XMLOrderImporter(File XMLFile){
+
 		MesController myController = new MesController();
 		ProductDAO proDAO = new ProductDAO();
+		OrderDAO ordQue = new OrderDAO();
+		Order myOrder = new Order();
 		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = null;
@@ -60,7 +67,7 @@ public class XMLOrderImporter {
 			 
 			Node nNode = nList.item(temp);
 	 
-			System.out.println("@MES> Added new order <");
+			System.out.println("radis-mes$ \t adding a new order");
 	 
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	 
@@ -69,20 +76,22 @@ public class XMLOrderImporter {
 				// get Product ID and set
 				String elementProductInfo = eElement.getElementsByTagName("b2mml:ID").item(0).getTextContent();
 				String[] elementProductInfos = elementProductInfo.split("O");
-				Product product = proDAO.getProductById(Integer.valueOf(elementProductInfos[0]));
-				
+				product = proDAO.getProductById(Integer.valueOf(elementProductInfos[0]));
+				productID = product.getId();
 				// get Order Date and set it, awaiting approval - added with 2 days. 
 				String timeStamp = new SimpleDateFormat("dd-MM-yy").format(Calendar.getInstance().getTime());
 				
 				Calendar c = Calendar.getInstance();
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+				
 				try {
 					c.setTime(sdf.parse(timeStamp));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 				c.add(Calendar.DATE, 2);  // number of days to add
 				timeStamp = sdf.format(c.getTime());  // dt is now the new date
 				orderDate = timeStamp;
@@ -93,18 +102,29 @@ public class XMLOrderImporter {
 				
 				// add waste. (Missing implementation)
 				orderQuantity = orderQuantityX;
-				System.out.println(orderQuantity);
+//				System.out.println(orderQuantity);
 				
 				// get order status and set it
-				orderStatus = eElement.getElementsByTagName("b2mml:Status").item(0).getTextContent();
-				System.out.println(orderStatus);
+				queueStatus = eElement.getElementsByTagName("b2mml:Status").item(0).getTextContent();
+//				System.out.println(orderStatus);
 				
 				
 			}
+			myOrder.setProduct(productID);
+			myOrder.setQuantity(orderQuantity);
+			myOrder.setStartDate(orderDate);
 			try {
-				myController.addOrder(product, orderQuantity, orderDate, null);
+				myController.addOrder(myOrder);
 			} finally {
-				System.out.println("Ok");
+				System.out.println("radis-mes$ \t Order added to DB");
+			}
+			System.out.println(myOrder.getId());
+//			
+			System.out.println("radis-mes$ \t Adding order to Queue");
+
+			try {
+			} finally {
+				System.out.println("radis-mes$ \t Not added to queue yet");
 			}
 		}
 

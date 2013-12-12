@@ -25,6 +25,7 @@ import XML.XMLOrderImporter;
 public class Main {
 	
 	public static void main(final String[] args){
+
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 
 //		User user = new User();
@@ -142,22 +143,37 @@ public class Main {
 //		ProductDAO dao = new ProductDAO();
 //		dao.addProduct(hi);
 //		
-		File fXmlFile = new File("src/9OQ7.xml");
-		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+//		File fXmlFile = new File("src/9OQ7.xml");
+//		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+//		
+//		LxmlReceiver disTwo = new LxmlReceiver();
+//		try {
+//			disTwo.ReceiveXML("Random.xml");
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JMSException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Queue myQueue = new Queue();
+//		QueueDAO queDAO = new QueueDAO();
+//		myQueue.setOrder(2);
+//		myQueue.setStatus("WelcomeWorld");
+//		queDAO.addQueue(myQueue);
+//		
+//		
+//		
+		System.out.println("Starting...	");
+		UserDAO userDao = new UserDAO();
+		User myUser = userDao.getUserById(62);
+		myUser.setUsername("Rubas");
+		userDao.updateUser(myUser);
+		System.out.println("...OK");
 		
-		LxmlReceiver disTwo = new LxmlReceiver();
-		try {
-			disTwo.ReceiveXML("Random.xml");
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
 	}
 }
