@@ -19,6 +19,7 @@ import javax.jms.TextMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import Model.MesController;
 import XML.XMLOrderImporter;
 
 public class OrderReceiver extends Observable {
@@ -104,6 +105,9 @@ public class OrderReceiver extends Observable {
     	     		System.out.println("=======Saving the order to Database=========");
 	     			
     	     		XMLOrderImporter importThis = new XMLOrderImporter(file);
+    	     		
+    	     		MesController mes = new MesController();
+    	     		mes.processXML(file);
     	     		
     	     		file.delete();
 	     	        }
