@@ -6,6 +6,7 @@ import DataAccessObject.OrderDAO;
 import DataAccessObject.ProductDAO;
 import DataAccessObject.UserDAO;
 import XML.XMLOrderImporter;
+import client.Configuration;
 import domain.Order;
 import domain.Product;
 import domain.User;
@@ -23,6 +24,9 @@ public class MesController {
 		return productAccess.getProductById(productId);
 	}
 	
+	public void sendRecipe(Product theProduct, Configuration config){
+		theProduct.getName();
+	}
 	
 	public void processXML(File XMLFile){
 		new XMLOrderImporter(XMLFile);
