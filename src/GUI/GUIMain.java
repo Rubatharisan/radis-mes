@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import server.Server;
+import Listener.OrderReceiver;
 import Model.MesController;
 
 public class GUIMain {
@@ -38,6 +39,8 @@ public class GUIMain {
 				}
 			}
 		});
+		OrderReceiver receive = new OrderReceiver();
+		receive.ReceiveXML();
 	}
 
 	/**
