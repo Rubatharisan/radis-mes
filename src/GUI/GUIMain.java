@@ -6,8 +6,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -15,12 +14,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import DataAccessObject.OrderDAO;
-import DataAccessObject.ProductDAO;
-import domain.Order;
+import server.Server;
+import Model.MesController;
 
 public class GUIMain {
 	JLabel actionBar;
@@ -69,7 +66,7 @@ public class GUIMain {
 				panel_1.repaint();
 				panel_1.revalidate();
 				
-				panel_1.add(new QuickTableFrame());
+				panel_1.add(new GUIOrderView());
 				panel_1.repaint();
 				panel_1.revalidate();
 			}
@@ -82,7 +79,7 @@ public class GUIMain {
 				panel_1.repaint();
 				panel_1.revalidate();
 				
-				panel_1.add(panel_5);
+				panel_1.add(new GUIProductView());
 				panel_1.repaint();
 				panel_1.revalidate();
 			}
@@ -101,18 +98,17 @@ public class GUIMain {
 			}
 		});
 		
-		JButton btnLog = new JButton("Log");
+		JButton btnLog = new JButton("Start MES");
 		btnLog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				actionBar.setText("HI");
-				
-				panel_1.removeAll();
-				panel_1.repaint();
-				panel_1.revalidate();
-				
-				panel_1.add(new GUIOrderPanel());
-				panel_1.repaint();
-				panel_1.revalidate();
+				Server serv;
+				try {
+					serv = new Server();
+					serv.start();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -176,6 +172,8 @@ public class GUIMain {
 		actionBar = new JLabel("New label");
 		panel_2.add(actionBar);
 		
+		MesController mes = new MesController();
+//		mes.getActive();
 		
 	}
 }

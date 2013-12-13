@@ -3,10 +3,7 @@
 import java.io.File;
 import java.util.logging.Level;
 
-import DataAccessObject.UserDAO;
 import Model.MesController;
-import XML.XMLOrderImporter;
-import domain.User;
 
 public class Main {
 	
@@ -129,8 +126,8 @@ public class Main {
 //		ProductDAO dao = new ProductDAO();
 //		dao.addProduct(hi);
 //		
-		File fXmlFile = new File("src/9OQ7.xml");
-		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+//		File fXmlFile = new File("src/9OQ7.xml");
+//		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
 //		
 //		LxmlReceiver disTwo = new LxmlReceiver();
 //		try {
@@ -186,9 +183,27 @@ public class Main {
 //		User Nikolaj = NikolajDAO.getUserById(63);
 //		Nikolaj.setEmail("NyEmail");
 //		NikolajDAO.updateUser(Nikolaj);
-		
+		// THIS IS the tester!
 		MesController mes = new MesController();
 		File XMLFile = new File("src/12OQ1.xml");
 		mes.processXML(XMLFile);
+
+		QueueChecker checker = new QueueChecker();
+		Thread t = new Thread(checker);
+		t.start();
+		
+		SocketReceiver sock = new SocketReceiver();
+		Thread x = new Thread(sock);
+		x.start();
+		
+		File XMLFilex = new File("src/9OQ7.xml");
+		mes.processXML(XMLFilex);
+//		
+//		
+//		ConfigDAO myDao = new ConfigDAO();
+//		Configuration myConf = myDao.getConfigurationById(1);
+//		System.out.println(myConf.getBlue_level());
+//		
+		
 	}
 }

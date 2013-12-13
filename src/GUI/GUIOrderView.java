@@ -4,9 +4,9 @@ import java.sql.SQLException;
 
 import javax.swing.JPanel;
 
-public class QuickTableFrame extends JPanel
+public class GUIOrderView extends JPanel
 {
-   public QuickTableFrame()
+   public GUIOrderView()
    {
       //set Frame properties
 
@@ -26,7 +26,7 @@ public class QuickTableFrame extends JPanel
       dBTable1.setUser("root");
       dBTable1.setPassword("password");
       // set the select statement which should be used by the table
-      dBTable1.setSelectSql("select * from Products");
+      dBTable1.setSelectSql("select * from Orders");
 
       //to create the navigation bars for the table
       dBTable1.createControlPanel();
@@ -48,12 +48,6 @@ public class QuickTableFrame extends JPanel
          e.printStackTrace();
       }
 
-   }
-
-   public static void main(String[] args)
-   {
-      //create a new table frame
-      QuickTableFrame myframe = new QuickTableFrame();
    }
 }
 

@@ -29,6 +29,6 @@
    <mapping class="domain.Order"/>
    <mapping resource="products.hbm.xml"/>
    <mapping class="domain.Product"/>
- 
+   
 </session-factory>
 </hibernate-configuration>

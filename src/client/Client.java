@@ -24,7 +24,7 @@ public class Client
          DataOutputStream out =
                        new DataOutputStream(outToServer);
          ObjectOutputStream objectOut = new ObjectOutputStream(outToServer);
-         objectOut.writeObject(new Configuration(450, 200, 0, 21));
+//         objectOut.writeObject(new Configuration(450, 200, 0, 21));
          
          out.writeUTF("Hello from "
                       + client.getLocalSocketAddress());

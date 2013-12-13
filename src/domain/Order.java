@@ -1,17 +1,20 @@
 package domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import DataAccessObject.ProductDAO;
-
 @Entity
 @Table(name="Orders")
-public class Order {
+public class Order implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
 	@Id
 	private int id;
 	private int product;
@@ -73,10 +76,4 @@ public class Order {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getProductName(int id){
-		ProductDAO dao = new ProductDAO();
-		String name = dao.getProductById(id).getName();
-		return name;
-	}
-	
 }
