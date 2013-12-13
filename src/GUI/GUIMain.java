@@ -16,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import server.QueueChecker;
 import server.Server;
+import server.SocketReceiver;
 import Listener.OrderReceiver;
 import Model.MesController;
 
@@ -41,6 +43,7 @@ public class GUIMain {
 		});
 		OrderReceiver receive = new OrderReceiver();
 		receive.ReceiveXML();
+
 	}
 
 	/**
@@ -48,6 +51,13 @@ public class GUIMain {
 	 */
 	public GUIMain() {
 		initialize();
+		QueueChecker checker = new QueueChecker();
+		Thread t = new Thread(checker);
+		t.start();
+		
+		SocketReceiver sock = new SocketReceiver();
+		Thread x = new Thread(sock);
+		x.start();
 	}
 
 	/**
@@ -176,6 +186,7 @@ public class GUIMain {
 		panel_2.add(actionBar);
 		
 		MesController mes = new MesController();
+		
 //		mes.getActive();
 		
 	}

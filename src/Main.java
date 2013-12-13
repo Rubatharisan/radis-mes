@@ -3,6 +3,8 @@
 import java.io.File;
 import java.util.logging.Level;
 
+import server.QueueChecker;
+import server.SocketReceiver;
 import Model.MesController;
 
 public class Main {
@@ -185,8 +187,8 @@ public class Main {
 //		NikolajDAO.updateUser(Nikolaj);
 		// THIS IS the tester!
 		MesController mes = new MesController();
-		File XMLFile = new File("src/12OQ1.xml");
-		mes.processXML(XMLFile);
+//		File XMLFile = new File("src/12OQ1.xml");
+//		mes.processXML(XMLFile);
 
 		QueueChecker checker = new QueueChecker();
 		Thread t = new Thread(checker);
@@ -195,9 +197,9 @@ public class Main {
 		SocketReceiver sock = new SocketReceiver();
 		Thread x = new Thread(sock);
 		x.start();
-		
-		File XMLFilex = new File("src/9OQ7.xml");
-		mes.processXML(XMLFilex);
+//		
+//		File XMLFilex = new File("src/9OQ7.xml");
+//		mes.processXML(XMLFilex);
 //		
 //		
 //		ConfigDAO myDao = new ConfigDAO();
@@ -206,4 +208,5 @@ public class Main {
 //		
 		
 	}
+	
 }

@@ -1,7 +1,7 @@
+package server;
 import java.io.IOException;
 
 import Model.MesController;
-import server.Server;
 
 
 public class SocketReceiver implements Runnable {
