@@ -36,7 +36,7 @@ public class XMLOrderImporter {
 
 		MesController myController = new MesController();
 		ProductDAO proDAO = new ProductDAO();
-		OrderDAO ordQue = new OrderDAO();
+		OrderDAO ordDAO = new OrderDAO();
 		Order myOrder = new Order();
 		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -62,12 +62,12 @@ public class XMLOrderImporter {
 		doc.getDocumentElement().normalize();
 		
 		NodeList nList = doc.getElementsByTagName("b2mml:MaterialInformation");
-		
+		System.out.println("radis-mes$ \t adding a new order");
+
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 
 			Node nNode = nList.item(temp);
 	 
-			System.out.println("radis-mes$ \t adding a new order");
 	 
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	 
@@ -76,13 +76,15 @@ public class XMLOrderImporter {
 				// get Product ID and set
 				String elementProductInfo = eElement.getElementsByTagName("b2mml:ID").item(0).getTextContent();
 				String[] elementProductInfos = elementProductInfo.split("O");
+				
+				// Checks if product exist in DB!
 				product = proDAO.getProductById(Integer.valueOf(elementProductInfos[0]));
+				
 				productID = product.getId();
+				
 				// get Order Date and set it, awaiting approval - added with 2 days. 
 				String timeStamp = new SimpleDateFormat("dd-MM-yy").format(Calendar.getInstance().getTime());
-				
 				Calendar c = Calendar.getInstance();
-				
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
 				
 				try {
@@ -113,6 +115,7 @@ public class XMLOrderImporter {
 			myOrder.setProduct(productID);
 			myOrder.setQuantity(orderQuantity);
 			myOrder.setStartDate(orderDate);
+			myOrder.setStatus(0);
 			try {
 				myController.addOrder(myOrder);
 			} finally {

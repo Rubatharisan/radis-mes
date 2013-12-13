@@ -16,7 +16,10 @@ public class Order {
 	private int quantity;
 	private String startDate;
 	private Date finishDate;
+	private int status;
 	
+	
+
 	public Order(){
 		product = 0;
 		quantity = 0;
@@ -62,6 +65,11 @@ public class Order {
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
-	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
 }

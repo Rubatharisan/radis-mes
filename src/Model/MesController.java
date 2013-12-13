@@ -1,14 +1,32 @@
 package Model;
-import java.util.Date;
+import java.util.List;
 
 import DataAccessObject.OrderDAO;
+import DataAccessObject.ProductDAO;
+import DataAccessObject.UserDAO;
 import domain.Order;
 import domain.Product;
+import domain.User;
 
 
 public class MesController {
-	void processOrder(String XMLDocumentPath){
+	Product productOperator = new Product();
+	ProductDAO productAccess = new ProductDAO();
+	Order orderOperator = new Order();
+	OrderDAO orderAccess = new OrderDAO();
+	User userOperator = new User();
+	UserDAO userAccess = new UserDAO();
+	
+	public Product getProduct(int productId){
+		return productAccess.getProductById(productId);
+	}
+	
+	public void processXML(){
 		
+	}
+	
+	public List<Product> getAllProducts(){
+		return productAccess.getAllProducts();
 	}
 	
 	public void addOrder(Order order){

@@ -1,26 +1,11 @@
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 
-import javax.jms.JMSException;
-import javax.naming.NamingException;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-
-import domain.Order;
-import domain.Product;
-import domain.User;
-import DataAccessObject.OrderDAO;
-import DataAccessObject.ProductDAO;
 import DataAccessObject.UserDAO;
-import Sandbox.CRUD;
-import Sandbox.Listener;
-import Sandbox.LxmlReceiver;
 import XML.XMLOrderImporter;
+import domain.User;
 
 public class Main {
 	
@@ -143,8 +128,8 @@ public class Main {
 //		ProductDAO dao = new ProductDAO();
 //		dao.addProduct(hi);
 //		
-//		File fXmlFile = new File("src/9OQ7.xml");
-//		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+		File fXmlFile = new File("src/9OQ7.xml");
+		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
 //		
 //		LxmlReceiver disTwo = new LxmlReceiver();
 //		try {
@@ -167,13 +152,38 @@ public class Main {
 //		
 //		
 //		
-		System.out.println("Starting...	");
-		UserDAO userDao = new UserDAO();
-		User myUser = userDao.getUserById(62);
-		myUser.setUsername("Rubas");
-		userDao.updateUser(myUser);
-		System.out.println("...OK");
+//		System.out.println("Starting...	");
+//		UserDAO userDao = new UserDAO();
+//		User myUser = userDao.getUserById(62);
+//		myUser.setUsername("Rubas");
+//		userDao.updateUser(myUser);
+//		
+//		System.out.println(".... testing ordre ....");
+//		
+//		OrderDAO orderDao1 = new OrderDAO();
+//		Order one = new Order();
+//		one.setQuantity(5);
+//		one.setProduct(7);
+//		orderDao1.addOrder(one);
+//
+//		System.out.println("...OK");
 		
-
+//		OrderDAO myOrdDao = new OrderDAO();
+//		ProductDAO proDao = new ProductDAO();
+//		for (Order order : myOrdDao.getAllOrders()){
+//			System.out.println("Order ID: " + order.getId() + " Product: " + proDao.getProductById(order.getProduct()).getName() + "(" + proDao.getProductById(order.getProduct()).getId() + ")");
+//		}
+		
+//		OrderDAO ordDao = new OrderDAO();
+//		ProductDAO proDao = new ProductDAO();
+//		
+//		Order newOrder = new Order();
+//		newOrder.setProduct(proDao.getProductById(8).getId());
+//		
+//		
+		UserDAO NikolajDAO = new UserDAO();
+		User Nikolaj = NikolajDAO.getUserById(63);
+		Nikolaj.setEmail("NyEmail");
+		NikolajDAO.updateUser(Nikolaj);
 	}
 }
