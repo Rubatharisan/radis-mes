@@ -69,7 +69,7 @@ public class GUIMain {
 				panel_1.repaint();
 				panel_1.revalidate();
 				
-				panel_1.add(panel_4);
+				panel_1.add(new QuickTableFrame());
 				panel_1.repaint();
 				panel_1.revalidate();
 			}

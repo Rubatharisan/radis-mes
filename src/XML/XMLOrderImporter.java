@@ -123,12 +123,6 @@ public class XMLOrderImporter {
 			}
 			System.out.println(myOrder.getId());
 //			
-			System.out.println("radis-mes$ \t Adding order to Queue");
-
-			try {
-			} finally {
-				System.out.println("radis-mes$ \t Not added to queue yet");
-			}
 		}
 
 

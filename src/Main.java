@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.logging.Level;
 
 import DataAccessObject.UserDAO;
+import Model.MesController;
 import XML.XMLOrderImporter;
 import domain.User;
 
@@ -181,9 +182,13 @@ public class Main {
 //		newOrder.setProduct(proDao.getProductById(8).getId());
 //		
 //		
-		UserDAO NikolajDAO = new UserDAO();
-		User Nikolaj = NikolajDAO.getUserById(63);
-		Nikolaj.setEmail("NyEmail");
-		NikolajDAO.updateUser(Nikolaj);
+//		UserDAO NikolajDAO = new UserDAO();
+//		User Nikolaj = NikolajDAO.getUserById(63);
+//		Nikolaj.setEmail("NyEmail");
+//		NikolajDAO.updateUser(Nikolaj);
+		
+		MesController mes = new MesController();
+		File XMLFile = new File("src/12OQ1.xml");
+		mes.processXML(XMLFile);
 	}
 }

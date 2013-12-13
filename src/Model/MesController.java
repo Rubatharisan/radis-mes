@@ -1,9 +1,11 @@
 package Model;
+import java.io.File;
 import java.util.List;
 
 import DataAccessObject.OrderDAO;
 import DataAccessObject.ProductDAO;
 import DataAccessObject.UserDAO;
+import XML.XMLOrderImporter;
 import domain.Order;
 import domain.Product;
 import domain.User;
@@ -21,8 +23,10 @@ public class MesController {
 		return productAccess.getProductById(productId);
 	}
 	
-	public void processXML(){
-		
+	
+	public void processXML(File XMLFile){
+		new XMLOrderImporter(XMLFile);
+		System.out.println("Processed");
 	}
 	
 	public List<Product> getAllProducts(){
