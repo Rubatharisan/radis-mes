@@ -47,9 +47,9 @@ public class OrderAdd {
 		        String sql = "INSERT INTO Orders (orderName, orderStatus, orderComment)" +
 		                "VALUES (?, ?, ?)";
 		        PreparedStatement preparedStatement = conn.prepareStatement(sql);
-		        preparedStatement.setString(1, "Test");
-		        preparedStatement.setString(2, "Test2");
-		        preparedStatement.setString(3, "Test2");
+		        preparedStatement.setString(1, course_code);
+		        preparedStatement.setString(2, course_desc);
+		        preparedStatement.setString(3, course_chair);
 
 		        preparedStatement.executeUpdate(); 
 		        System.out.println(" SUCCESS!\n");

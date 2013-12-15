@@ -26,7 +26,7 @@ public class GUIMain {
 	JLabel actionBar;
 	private JFrame frame;
 	private JPanel panel_1, panel_4, panel_5, panel_3;
-
+	private MesController mes;
 	/**
 	 * Launch the application.
 	 */
@@ -185,7 +185,6 @@ public class GUIMain {
 		actionBar = new JLabel("New label");
 		panel_2.add(actionBar);
 		
-		MesController mes = new MesController();
 		
 //		mes.getActive();
 		
