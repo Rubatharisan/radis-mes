@@ -1,30 +1,16 @@
 
 
 import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 
-import javax.jms.JMSException;
-import javax.naming.NamingException;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-
-import domain.Order;
-import domain.Product;
-import domain.User;
-import DataAccessObject.OrderDAO;
-import DataAccessObject.ProductDAO;
-import DataAccessObject.UserDAO;
-import Sandbox.CRUD;
-import Sandbox.Listener;
-import Sandbox.LxmlReceiver;
-import XML.XMLOrderImporter;
+import server.QueueChecker;
+import server.SocketReceiver;
+import Model.MesController;
 
 public class Main {
 	
 	public static void main(final String[] args){
+
 		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
 
 //		User user = new User();
@@ -142,9 +128,85 @@ public class Main {
 //		ProductDAO dao = new ProductDAO();
 //		dao.addProduct(hi);
 //		
-		File fXmlFile = new File("src/12OQ1.xml");
+//		File fXmlFile = new File("src/9OQ7.xml");
+//		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+//		
+//		LxmlReceiver disTwo = new LxmlReceiver();
+//		try {
+//			disTwo.ReceiveXML("Random.xml");
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JMSException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Queue myQueue = new Queue();
+//		QueueDAO queDAO = new QueueDAO();
+//		myQueue.setOrder(2);
+//		myQueue.setStatus("WelcomeWorld");
+//		queDAO.addQueue(myQueue);
+//		
+//		
+//		
+//		System.out.println("Starting...	");
+//		UserDAO userDao = new UserDAO();
+//		User myUser = userDao.getUserById(62);
+//		myUser.setUsername("Rubas");
+//		userDao.updateUser(myUser);
+//		
+//		System.out.println(".... testing ordre ....");
+//		
+//		OrderDAO orderDao1 = new OrderDAO();
+//		Order one = new Order();
+//		one.setQuantity(5);
+//		one.setProduct(7);
+//		orderDao1.addOrder(one);
+//
+//		System.out.println("...OK");
+		
+//		OrderDAO myOrdDao = new OrderDAO();
+//		ProductDAO proDao = new ProductDAO();
+//		for (Order order : myOrdDao.getAllOrders()){
+//			System.out.println("Order ID: " + order.getId() + " Product: " + proDao.getProductById(order.getProduct()).getName() + "(" + proDao.getProductById(order.getProduct()).getId() + ")");
+//		}
+		
+//		OrderDAO ordDao = new OrderDAO();
+//		ProductDAO proDao = new ProductDAO();
+//		
+//		Order newOrder = new Order();
+//		newOrder.setProduct(proDao.getProductById(8).getId());
+//		
+//		
+//		UserDAO NikolajDAO = new UserDAO();
+//		User Nikolaj = NikolajDAO.getUserById(63);
+//		Nikolaj.setEmail("NyEmail");
+//		NikolajDAO.updateUser(Nikolaj);
+		// THIS IS the tester!
+		MesController mes = new MesController();
+//		File XMLFile = new File("src/12OQ1.xml");
+//		mes.processXML(XMLFile);
 
-		XMLOrderImporter disOne = new XMLOrderImporter(fXmlFile);
+		QueueChecker checker = new QueueChecker();
+		Thread t = new Thread(checker);
+		t.start();
+		
+		SocketReceiver sock = new SocketReceiver();
+		Thread x = new Thread(sock);
+		x.start();
+//		
+//		File XMLFilex = new File("src/9OQ7.xml");
+//		mes.processXML(XMLFilex);
+//		
+//		
+//		ConfigDAO myDao = new ConfigDAO();
+//		Configuration myConf = myDao.getConfigurationById(1);
+//		System.out.println(myConf.getBlue_level());
+//		
 		
 	}
+	
 }

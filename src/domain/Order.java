@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -8,15 +9,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Orders")
-public class Order {
+public class Order implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
 	@Id
 	private int id;
 	private int product;
 	private int quantity;
-	private Date startDate;
+	private String startDate;
 	private Date finishDate;
+	private int status;
 	
+	
+
 	public Order(){
 		product = 0;
 		quantity = 0;
@@ -24,7 +32,7 @@ public class Order {
 		finishDate = null;
 	}
 	
-	public Order(int product, int quantity, Date startDate, Date finishDate){
+	public Order(int product, int quantity, String startDate, Date finishDate){
 		this.product = product;
 		this.quantity = quantity;
 		this.startDate = startDate;
@@ -41,8 +49,8 @@ public class Order {
 	public int getProduct() {
 		return product;
 	}
-	public void setProduct(int product) {
-		this.product = product;
+	public void setProduct(int product2) {
+		this.product = product2;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -50,11 +58,11 @@ public class Order {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(String orderDate) {
+		this.startDate = orderDate;
 	}
 	public Date getFinishDate() {
 		return finishDate;
@@ -62,6 +70,10 @@ public class Order {
 	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
-	
-	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }

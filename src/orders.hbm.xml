@@ -15,6 +15,7 @@
       <property name="quantity" column="quantity" type="int"/>
       <property name="startDate" column="start_date" type="string"/>
       <property name="finishDate" column="finish_date" type="string"/>
+      <property name="status" column="status" type="int"/>
       
    </class>
 </hibernate-mapping>
