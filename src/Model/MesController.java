@@ -50,6 +50,10 @@ public class MesController {
 		
 	}
 	
+	public void addProduct(Product myProduct){
+		productAccess.addProduct(myProduct);
+	}
+	
 	
 	
 	// 
