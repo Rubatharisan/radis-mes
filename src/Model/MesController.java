@@ -50,8 +50,11 @@ public class MesController {
 		
 	}
 	
-	public void addProduct(Product myProduct){
-		productAccess.addProduct(myProduct);
+	public void addProduct(String name, int eta, int available){
+		productOperator.setName(name);
+		productOperator.setEta(eta);
+		productOperator.setAvailable(available);
+		productAccess.addProduct(productOperator);
 	}
 	
 	
