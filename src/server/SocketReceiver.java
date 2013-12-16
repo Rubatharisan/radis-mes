@@ -20,10 +20,10 @@ public class SocketReceiver implements Runnable {
 		
 		while(true){
 			if(serv.isBusy()){
-				System.out.println("Hi?");
+				System.out.println(":SCADA: Live");
 				MesController.scadaBusy = true;
 			} else {
-				System.out.println("No");
+				System.out.println(":SCADA: Connection wait");
 				MesController.scadaBusy = false;						
 			}
 			try {
