@@ -65,7 +65,7 @@ public class OrderReceiver extends Observable {
 	     			MessageConsumer TextmessageConsumer = session.createConsumer(textqueue);
 	     			MessageConsumer BytemessageConsumer =  session.createConsumer(bytequeue);
 	     			
-	     			System.out.println("========Receiving message==========");
+	     			System.out.println(":JMS: In Queue for Messages...");
 	     			
 	     	        TextMessage textMessage = (TextMessage) TextmessageConsumer.receive();
 	     	        BytesMessage byteMessage = (BytesMessage) BytemessageConsumer.receive();
@@ -75,11 +75,11 @@ public class OrderReceiver extends Observable {
 	     	        {
 	     	        	s = textMessage.getText();
 	    	     		
-	    	     		System.out.println("TextMessage: " + s);
+	    	     		System.out.println(":JMS: Received order: " + s);
 	    	  
 	     	        }
 	     	        if(byteMessage != null){
-	     	       	System.out.println("Received message with: " + byteMessage.getBodyLength() + 
+	     	       	System.out.println(":JMS: Received message with: " + byteMessage.getBodyLength() + 
     	     				" bytes. Now streaming to file on disk.");
     	     		     		
     	     		
@@ -99,9 +99,9 @@ public class OrderReceiver extends Observable {
     	     		outBuf.close();
     	     		fos.close();
     	     		
-    	     		System.out.println("File streamed to disk. Size of received file on disk is " + byteMessage.getBodyLength());
+    	     		System.out.println(":JMS: File streamed to disk. Size of received file on disk is " + byteMessage.getBodyLength());
     	     		
-    	     		System.out.println("=======Saving the order to Database=========");
+    	     		System.out.println(":JMS: Sending file over to XML Importer");
 	     			
     	     		XMLOrderImporter importThis = new XMLOrderImporter(file);
     	     		

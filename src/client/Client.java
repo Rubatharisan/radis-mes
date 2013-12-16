@@ -14,11 +14,11 @@ public class Client
       try
       {
     	  
-         System.out.println("Connecting to " + serverName
+         System.out.println(":SOCKET: Connecting to " + serverName
                              + " on port " + port);
          Socket client = new Socket(serverName, port);
          
-         System.out.println("Just connected to "
+         System.out.println(":SOCKET: Just connected to "
                       + client.getRemoteSocketAddress());
          OutputStream outToServer = client.getOutputStream();
          DataOutputStream out =

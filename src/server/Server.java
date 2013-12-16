@@ -24,11 +24,11 @@ public class Server extends Thread
       {
          try
          {
-        	System.out.println("Server name: "+serverSocket.getInetAddress().getHostName());
-            System.out.println("Waiting for client on port " +
+        	System.out.println(":SOCKET: Server name: "+serverSocket.getInetAddress().getHostName());
+            System.out.println(":SOCKET: Waiting for :SCADA: on port " +
             serverSocket.getLocalPort() + "...");
             Socket server = serverSocket.accept();
-            System.out.println("Just connected to "
+            System.out.println(":SOCKET: Just connected to :SCADA:@"
                   + server.getRemoteSocketAddress());
         
             
@@ -38,12 +38,11 @@ public class Server extends Thread
               
             DataOutputStream out =
                  new DataOutputStream(server.getOutputStream());
-            out.writeUTF("Thank you for connecting to "
-              + server.getLocalSocketAddress() + "\nGoodbye!");
+
             server.close();
          }catch(SocketTimeoutException s)
          {
-            System.out.println("Socket timed out!");
+            System.out.println(":SOCKET: Socket timed out!");
             break;
          }catch(IOException e)
          {
