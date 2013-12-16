@@ -22,7 +22,7 @@ public class MesController {
 	OrderDAO orderAccess = new OrderDAO();
 	User userOperator = new User();
 	UserDAO userAccess = new UserDAO();
-	public static boolean scadaBusy = false;
+	public static boolean scadaBusy = true;
 	boolean serverAvailable;
 	public static Queue<Recipe>	theQueue = new LinkedList<Recipe>();
 

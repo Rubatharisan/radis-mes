@@ -19,7 +19,7 @@ public class SocketReceiver implements Runnable {
 		}
 		
 		while(true){
-			if(serv.isBusy()){
+			if(!serv.isBusy()){
 				System.out.println(":SCADA: Live");
 				MesController.scadaBusy = true;
 			} else {
