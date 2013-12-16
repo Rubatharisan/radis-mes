@@ -51,6 +51,7 @@ public class MesController {
 	}
 	
 	public void addProduct(String name, int eta, int available){
+		productOperator = null;
 		productOperator.setName(name);
 		productOperator.setEta(eta);
 		productOperator.setAvailable(available);
