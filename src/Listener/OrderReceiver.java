@@ -19,18 +19,14 @@ import javax.jms.TextMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import Model.MesController;
 import XML.XMLOrderImporter;
 
 public class OrderReceiver extends Observable {
 	
 	private boolean nothingReceived  = false;
 	private String s;
-	
-	public static void main(String[] args) throws InterruptedException {
-		
-			new OrderReceiver().ReceiveXML();
-		
-	}
+	private MesController mes;
 	
 	public void ReceiveXML() {
 
@@ -103,7 +99,9 @@ public class OrderReceiver extends Observable {
     	     		
     	     		System.out.println(":JMS: Sending file over to XML Importer");
 	     			
-    	     		XMLOrderImporter importThis = new XMLOrderImporter(file);
+    	    		new XMLOrderImporter(file);
+
+//    	     		mes.processXML(file);
     	     		
     	     		file.delete();
 	     	        }
