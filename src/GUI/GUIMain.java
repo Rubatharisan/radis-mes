@@ -39,6 +39,7 @@ public class GUIMain {
 		});
 		
 		OrderReceiver receive = new OrderReceiver();
+		receive.ReceiveXML();
 
 	}
 
