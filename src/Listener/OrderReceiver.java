@@ -26,6 +26,7 @@ public class OrderReceiver extends Observable {
 	
 	private boolean nothingReceived  = false;
 	private String s;
+	private MesController mes;
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -104,7 +105,7 @@ public class OrderReceiver extends Observable {
     	     		
     	     		System.out.println("=======Saving the order to Database=========");
 	     			
-    	     		XMLOrderImporter importThis = new XMLOrderImporter(file);
+    	     		mes.processXML(file);
     	     		
     	     		MesController mes = new MesController();
     	     		mes.processXML(file);
