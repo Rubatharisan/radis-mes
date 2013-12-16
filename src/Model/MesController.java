@@ -1,13 +1,9 @@
 package Model;
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import server.QueueChecker;
-import server.Server;
-import server.SocketReceiver;
 import DataAccessObject.OrderDAO;
 import DataAccessObject.ProductDAO;
 import DataAccessObject.UserDAO;
@@ -34,44 +30,6 @@ public class MesController {
 		return productAccess.getProductById(productId);
 	}
 	
-//	public boolean getActive(){
-//		new Runnable(){
-//
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				Server serv = null;
-//				try {
-//					serv = new Server();
-//					serv.start();
-//
-//				} catch (IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-//				
-//				while(true){
-//					if(serv.isBusy()){
-//						System.out.println("Hi?");
-//						scadaBusy = true;
-//					} else {
-//						System.out.println("No");
-//						scadaBusy = false;						
-//					}
-//					try {
-//						Thread.sleep((long) 1000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//				
-//			}
-//			
-//			
-//		}.run();
-//		return scadaBusy;
-//	}
 	
 	public void processXML(File XMLFile){
 		new XMLOrderImporter(XMLFile);
@@ -83,12 +41,11 @@ public class MesController {
 		return productAccess.getAllProducts();
 	}
 	
-	public void addOrder(Order order){
+	public void addOrder(Order myOrder){
 		// Make a contructor class instead! PRI01
-		OrderDAO orderDao = new OrderDAO();
-		orderDao.addOrder(order);
+		orderAccess.addOrder(myOrder);
 		
-		Recipe myRecipe = new Recipe(order, new Configuration(550, 400, 0, 25), productAccess.getProductById(order.getProduct()).getName());
+		Recipe myRecipe = new Recipe(myOrder, new Configuration(550, 400, 0, 25), productAccess.getProductById(myOrder.getProduct()).getName());
 		theQueue.add(myRecipe);
 		
 	}

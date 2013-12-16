@@ -11,9 +11,9 @@ public class QueueChecker implements Runnable{
 		while(true){
 			if(MesController.scadaBusy){
 				MesController.theQueue.poll().sendRecipe();
-				System.out.println("Sending file");
+				System.out.println(":QUEUE: Sending file");
 			} else {
-				System.out.println("Waiting");
+				System.out.println(":QUEUE: Waiting");
 			}
 			try {
 				Thread.sleep((long) 30000);
