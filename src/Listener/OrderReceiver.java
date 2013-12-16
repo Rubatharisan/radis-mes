@@ -28,12 +28,6 @@ public class OrderReceiver extends Observable {
 	private String s;
 	private MesController mes;
 	
-	public static void main(String[] args) throws InterruptedException {
-		
-			new OrderReceiver().ReceiveXML();
-		
-	}
-	
 	public void ReceiveXML() {
 
 	              
@@ -105,10 +99,9 @@ public class OrderReceiver extends Observable {
     	     		
     	     		System.out.println("=======Saving the order to Database=========");
 	     			
-    	     		mes.processXML(file);
-    	     		
-    	     		MesController mes = new MesController();
-    	     		mes.processXML(file);
+    	    		new XMLOrderImporter(file);
+
+//    	     		mes.processXML(file);
     	     		
     	     		file.delete();
 	     	        }
