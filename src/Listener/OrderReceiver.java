@@ -19,12 +19,14 @@ import javax.jms.TextMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import Model.MesController;
 import XML.XMLOrderImporter;
 
 public class OrderReceiver extends Observable {
 	
 	private boolean nothingReceived  = false;
 	private String s;
+	private MesController mes;
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -103,7 +105,7 @@ public class OrderReceiver extends Observable {
     	     		
     	     		System.out.println("=======Saving the order to Database=========");
 	     			
-    	     		XMLOrderImporter importThis = new XMLOrderImporter(file);
+    	     		mes.processXML(file);
     	     		
     	     		file.delete();
 	     	        }
